@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Variables calculation</title>
+</head>
+<body>
+  <script>
+    'use strict';
+
+    let a = +prompt( 'Enter first num', 0 ),
+        b = +prompt( 'Enter second num', 0 );
+
+    if( a >= 0 && b >= 0 )
+      alert( a - b );
+
+    if( a < 0 && b < 0 )
+      alert( a * b );
+
+    if(
+      ( a >= 0 && b < 0 ) ||
+      ( a < 0 && b >= 0 )
+    )
+      alert( a + b );
+
+  </script>
+</body>
+</html>
