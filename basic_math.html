@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic math</title>
+</head>
+<body>
+  <script>
+    'use strict';
+
+    function sum( num1, num2 ){
+      return num1 + num2;
+    }
+
+    function delta( num1, num2 ){
+      return num1 - num2;
+    }
+
+    function division( num1, num2 ){
+      return num1/num2;
+    }
+
+    function multy( num1, num2 ){
+      return num1 * num2;
+    }
+
+    function mathOpetation( num1, num2, operation ){
+      switch ( operation ) {
+        case '+': return sum( num1, num2 )
+        case '-': return delta( num1, num2 )
+        case '/': return division( num1, num2 )
+        case '*': return multy( num1, num2 )
+      }
+    }
+
+    let a = +prompt( 'Enter first num', 0 ),
+        b = +prompt( 'Enter second num', 0 ),
+        operation = prompt( 'Enter opearation ( +, -, / or * )', '+' );
+
+    let result = mathOpetation( a, b, operation);
+    alert( result );
+
+
+
+  </script>
+</body>
+</html>
