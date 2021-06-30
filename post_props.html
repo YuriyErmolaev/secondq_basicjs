@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post props</title>
+</head>
+<body>
+  <script>
+    'use strict';
+
+    const post = {
+      author: 'John',//1.
+      postId: 23,
+      comments: [
+        {
+          userId: 10,
+          userName: 'Alex',
+          text: 'Lorem  ipsum',
+          rating: {
+            likes: 10,
+            dislikes: 2//2.
+          }
+        },
+        {
+          userId: 5,//3.
+          userName: 'Jane',
+          text: 'Lorem  ipsum 2',//4.
+          rating: {
+            likes: 3,
+            dislikes: 1
+          }
+        }
+      ]
+    };
+
+    //1.
+    console.log( post.author );
+    //2.
+    console.log( post.comments[0].rating.dislikes );
+    //3.
+    console.log( post.comments[1].userId );
+    //4.
+    console.log( post.comments[1].text );
+
+  </script>
+</body>
+</html>

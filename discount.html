@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Discount</title>
+</head>
+<body>
+  <script>
+    'use strict';
+
+    const products = [
+      {
+        id: 3,
+        price: 200
+      },
+      {
+        id: 4,
+        price: 900
+      },
+      {
+        id: 1,
+        price: 1000
+      }
+    ];
+
+    let discount = 15,
+        coef = 1 - 15/100;
+
+    products.forEach((product) => {
+      product.price *= coef;
+    })
+
+    console.log( products );
+
+  </script>
+</body>
+</html>
