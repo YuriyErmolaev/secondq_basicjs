@@ -1028,6 +1028,31 @@
         button.addEventListener( 'click', addToCartHandler);
     });
 
+    function delFromCartHandler(e){
+
+        let button = e.target,
+            productCartHtmlEl = button.closest('.miniCartItem'),
+            productIdClass = productCartHtmlEl.classList[1],
+            strProdIdPos = productIdClass.indexOf("_"),
+            productId = +productIdClass.substring(strProdIdPos+1),
+            productObj = productsObj[productId];
+
+        updateCartTotal(
+            -productObj.num,
+            -productObj.sum
+        );
+
+        productObj.resetNum();
+
+        productCartHtmlEl.remove();
+
+    }
+
+    function getProductCartEl(cartEl, productId){
+        return cartEl.querySelector(`.itemCart_${productId}`);
+    }
+
+
     function addToCartHandler(e){
         let button = e.target,
             productHtmlEl = button.closest('.featureItem'),
@@ -1035,17 +1060,25 @@
             productId = productElData[0],
             productObj;
 
+        //create or get product object
         if( !(productId in productsObj)  ){
             productObj = new Product (...productElData);
             productsObj[productId] = productObj;
-            let newCartItemMarkup = getCartItemMarkup(productObj);
-            cartEl.insertAdjacentHTML( 'afterbegin', newCartItemMarkup );
         } else {
             productObj = productsObj[productId];
             productObj.addNum();
         }
 
-        let productCartEl = cartEl.querySelector(`.itemCart_${productId}`);
+
+        //create product cart element if does not exist and add handler to delete
+        if( !getProductCartEl(cartEl, productId) ){
+            let newCartItemMarkup = getCartItemMarkup(productObj);
+            cartEl.insertAdjacentHTML( 'afterbegin', newCartItemMarkup );
+            document.querySelector( `.itemCart_${productId} .crossIcon` )
+                .addEventListener( 'click', delFromCartHandler);
+        }
+
+        let productCartEl = getProductCartEl(cartEl, productId);
         productCartEl.querySelector('.num').innerHTML = productObj.num;
         productCartEl.querySelector('.sum').innerHTML = productObj.sum;
 
