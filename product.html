@@ -1015,6 +1015,10 @@
             this.num += 1;
             this.sum = this.price * this.num;
         }
+        resetNum() {
+            this.num = 0;
+            this.sum = 0;
+        }
     }
 
     let productsObj = {},
@@ -1045,19 +1049,25 @@
         productCartEl.querySelector('.num').innerHTML = productObj.num;
         productCartEl.querySelector('.sum').innerHTML = productObj.sum;
 
+        updateCartTotal(
+            1,
+            productObj.price
+        );
+
+    }
+
+    function updateCartTotal(num, sum){
         //update total cart summ
         let cartSummEl = cartEl.querySelector( '.cartSumm' ),
             cartSumm = +cartSummEl.innerHTML;
-        cartSumm += productObj.sum;
+        cartSumm += sum;
         cartSummEl.innerHTML = cartSumm;
-
         //update total num goods
-         let goodsNumEl = document.querySelector( '.goodsNum' ),
-             goodsNum = +goodsNumEl.innerHTML;
-        goodsNum += productObj.num;
+        let goodsNumEl = document.querySelector( '.goodsNum' ),
+            goodsNum = +goodsNumEl.innerHTML;
+        goodsNum += num;
         goodsNumEl.innerHTML = goodsNum;
     }
-
 
     function getProductElData ( productHtmlEl ){
         let imgBlock = productHtmlEl.querySelector('.featureItemImgBlock'),
